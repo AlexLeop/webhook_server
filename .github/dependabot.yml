@@ -4,10 +4,17 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
-updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "monthly"
-    allow:
-      - dependency-type: "all"
+services:
+  - name: webhook_server
+    packageManager: npm
+    scripts:
+      start: "node app.js --omit=dev"
+    env:
+      PORT: 3000
+      WHATSAPP_TOKEN: "EAAUiz3of6jABOweDZBMAHILGcDrwLClYlzOc4iWt3mUC6xZBaO2WbvKFjUfdfmJbqJg33vgZBo4t7H4twzPZCgZC7bSdtRZCSIOBJ5hf9Abua9icT9ukgtt2dtiKod4z85uz54GHkZAzLUZBBcceKDFgz6TxZBoq4XymssibZAVfdpLH6BZA9wScdJSxjZCfZB6ceO0ajJDrEeqnGlQZAJDzYLfruB0EZATGG0ZD"
+      VERIFY_TOKEN: "testando123"
+    ports:
+      - 3000:3000
+    github:
+      branch: main
+
